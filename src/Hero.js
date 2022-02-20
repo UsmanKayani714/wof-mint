@@ -1,10 +1,8 @@
-// import React, { useState } from "react";
 import Web3 from "web3";
 import logo from "./assets/logo.png";
 import { useState, useEffect } from "react";
 import "./Hero.css";
 require("dotenv").config();
-// import logo from "./assets/logo.png";
 function Hero({ setconnecctstatus, connecctstatus }) {
 	const [connectedAccount, setConnectedAccount] = useState("Connect Wallet");
 	useEffect(() => {
@@ -65,7 +63,7 @@ function Hero({ setconnecctstatus, connecctstatus }) {
 							<a
 								className="nav-link px-5 btn-visit text-center"
 								href="#"
-								tabindex="-1"
+								tabIndex="-1"
 								aria-disabled="true"
 								onClick={connectWallet}
 							>

@@ -36,3 +36,10 @@
 		rgba(21, 213, 22, 1) 100%
 	); */
 }
+
+@media (max-width: 768px) {
+	.img-fix {
+		width: 100%;
+		height: auto;
+	}
+}

@@ -4,7 +4,7 @@ import Web3 from "web3";
 import abi from "./abi.json";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import opensea from "./assets/opensea.svg";
+// import opensea from "./assets/opensea.svg";
 import caps from "./assets/captains.png";
 require("dotenv").config();
 const { REACT_APP_CONTRACT_ADDRESS } = process.env;
@@ -12,13 +12,13 @@ const { REACT_APP_CONTRACT_ADDRESS } = process.env;
 const Home = ({ connecctstatus, setConnectedstatus }) => {
 	const [connectedAccount, setConnectedAccount] = useState("Connect Wallet");
 	const [contract, setContract] = useState(null);
-	const [tokenId, setTokenId] = useState(null);
+	// const [tokenId, setTokenId] = useState(null);
 	const [supply, setTokenSupply] = useState(null);
 	const [price, setPrice] = useState();
 	const [priceInEth, setPriceInEth] = useState(0.08);
 	const [quantity, setQuantity] = useState(1);
 	const [minted, setMinted] = useState(false);
-	console.log("C", connecctstatus);
+	// console.log("C", connecctstatus);
 
 	useEffect(() => {
 		loadWeb3();
@@ -99,7 +99,7 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 		<>
 			<div className="container">
 				<h1 className="text-center">
-					<img src={caps} alt="caps" height="600px" />
+					<img src={caps} alt="caps" height="600px" className="img-fix" />
 				</h1>
 			</div>
 			<div className="container text-center d-flex justify-content-center py-5">
