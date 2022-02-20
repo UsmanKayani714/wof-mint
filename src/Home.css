@@ -1,0 +1,38 @@
+.btn-visit {
+	padding: 10px 25px;
+	color: #fff;
+	font-weight: 700;
+	transition: all 0.25s ease-in-out;
+}
+
+.btn-visit {
+	background: linear-gradient(
+		180deg,
+		rgba(186, 251, 7, 1) 0%,
+		rgba(21, 213, 22, 1) 100%
+	);
+}
+.btn-visit {
+	margin: 10px;
+	padding: 15px 45px;
+	text-align: center;
+	text-transform: uppercase;
+	transition: 0.5s;
+	background-size: 200% auto;
+	color: #000;
+	box-shadow: 0 0 10px #000;
+	border-radius: 30px;
+	cursor: pointer;
+	text-decoration: none;
+	display: block;
+}
+
+.btn-visit:hover {
+	background: #393939;
+	color: #fff;
+	/* background: linear-gradient(
+		90deg,
+		rgba(186, 251, 7, 1) 0%,
+		rgba(21, 213, 22, 1) 100%
+	); */
+}

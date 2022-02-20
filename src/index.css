@@ -1,0 +1,29 @@
+body {
+	background: rgb(186, 251, 7);
+	background: linear-gradient(
+		143deg,
+		rgba(186, 251, 7, 1) 0%,
+		rgba(21, 213, 22, 1) 100%
+	);
+
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: #fff;
+}
+p {
+	font-family: "Roboto", sans-serif;
+	font-weight: 200;
+}
+h1 {
+	font-family: "Rajdhani", sans-serif;
+}
+::selection {
+	color: #fff;
+	background: #c59d5f;
+}
+
+.footer-icon {
+	color: #fff;
+	cursor: pointer;
+	margin-right: 20px;
+}
