@@ -8,7 +8,6 @@ import axios from "axios";
 import caps from "./assets/captains.png";
 
 import whiteListAddresses from "./whitelist";
-import ogAddresses from "./og";
 
 require("dotenv").config();
 const { REACT_APP_CONTRACT_ADDRESS } = process.env;
@@ -75,31 +74,6 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 
     // await contract.methods
     //   .whiteListMint(merkleProof, quantity)
-    //   .send({ from: address.toString(), value: _value });
-    // setMinted(true);
-    // const totalSupply = await contract.methods.totalSupply().call();
-    // setTokenSupply(totalSupply);
-  }
-
-  async function ogMint() {
-    const web3 = window.web3;
-    const _value = price * quantity;
-    const address = await web3.eth.getAccounts();
-
-    const senderAddress = address[0];
-    const sentAddress = keccak256(senderAddress);
-    const leafNodes = ogAddresses.map((addr) => keccak256(addr));
-    const merkleTree = new MerkleTree(leafNodes, keccak256, {
-      sortPairs: true,
-    });
-    const rootHash = merkleTree.getHexRoot();
-    const merkleProof = merkleTree.getHexProof(sentAddress);
-    console.log(rootHash, merkleProof);
-
-    // OG KA METHOD LGANA IDHR
-
-    // await contract.methods
-    //   .ogMint(merkleProof, quantity)
     //   .send({ from: address.toString(), value: _value });
     // setMinted(true);
     // const totalSupply = await contract.methods.totalSupply().call();
@@ -176,7 +150,7 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
             className="px-5 text-center btn-visit rounded-pill"
             onClick={async () => {
               await connectWallet();
-              ogMint();
+              whitelistMint();
             }}
           >
             Mint Now
