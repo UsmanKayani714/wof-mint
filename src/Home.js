@@ -40,6 +40,7 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 			const ct = new web3.eth.Contract(abi, contractaddress);
 			setContract(ct);
 			console.log("ct", ct);
+			// let price = await ct.methods.price().call();
 			let price = await ct.methods.presaleprice().call();
 			setContract(ct);
 			setPrice(price);
@@ -54,6 +55,19 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 			);
 		}
 	}
+	// async function mint() {
+	// 	// alert("normal");
+	// 	const web3 = window.web3;
+	// 	const _value = price * quantity;
+	// 	const address = await web3.eth.getAccounts();
+
+	// 	await contract.methods
+	// 		.Mint(quantity)
+	// 		.send({ from: address.toString(), value: _value });
+	// 	setMinted(true);
+	// 	const totalSupply = await contract.methods.totalSupply().call();
+	// 	setTokenSupply(totalSupply);
+	// }
 	async function whitelistMint() {
 		const web3 = window.web3;
 		const _value = price * quantity;

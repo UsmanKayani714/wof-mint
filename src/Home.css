@@ -27,15 +27,11 @@
 	display: block;
 }
 
-.btn-visit:hover {
+/* .btn-visit:hover {
 	background: #393939;
 	color: #fff;
-	/* background: linear-gradient(
-		90deg,
-		rgba(186, 251, 7, 1) 0%,
-		rgba(21, 213, 22, 1) 100%
-	); */
-}
+} */
+
 .nounderline{
 	text-decoration: none;
 }
@@ -45,4 +41,5 @@
 		width: 100%;
 		height: auto;
 	}
+	
 }
