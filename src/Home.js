@@ -181,15 +181,6 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 							Connect wallet
 						</a>
 					)}
-					{/* <a
-						className="px-5 text-center btn-visit rounded-pill"
-						onClick={async () => {
-							await connectWallet();
-							whitelistMint();
-						}}
-					>
-						Mint Now
-					</a> */}
 					<p className="fw-bold fs-3">{supply} / 5500</p>
 					{minted ? (
 						<>
@@ -209,7 +200,7 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 				</div>
 			</div>
 			<div className="container text-center">
-				<h1 className="display-3">Mint your WORLD OF FOOTBALL NFT</h1>
+				<h1 className="display-3">Mint Your WORLD OF FOOTBALL NFT</h1>
 			</div>
 		</>
 	);
