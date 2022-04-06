@@ -1,8 +1,8 @@
 [
 	{
 		"inputs": [
-			{ "internalType": "string", "name": "baseuri", "type": "string" },
-			{ "internalType": "bytes32", "name": "finalRootHash", "type": "bytes32" }
+			{ "internalType": "bytes32", "name": "finalRootHash", "type": "bytes32" },
+			{ "internalType": "string", "name": "_NotRevealedUri", "type": "string" }
 		],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
@@ -32,7 +32,6 @@
 		"type": "error"
 	},
 	{ "inputs": [], "name": "TransferToZeroAddress", "type": "error" },
-	{ "inputs": [], "name": "URIQueryForNonexistentToken", "type": "error" },
 	{ "inputs": [], "name": "UnableDetermineTokenOwner", "type": "error" },
 	{
 		"anonymous": false,
@@ -129,10 +128,26 @@
 		"type": "event"
 	},
 	{
-		"inputs": [],
-		"name": "FlippauseMinting",
+		"inputs": [
+			{ "internalType": "uint256", "name": "chosenAmount", "type": "uint256" }
+		],
+		"name": "Mint",
 		"outputs": [],
-		"stateMutability": "nonpayable",
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32[]",
+				"name": "_merkleProof",
+				"type": "bytes32[]"
+			},
+			{ "internalType": "uint256", "name": "chosenAmount", "type": "uint256" }
+		],
+		"name": "PreMint",
+		"outputs": [],
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -169,28 +184,6 @@
 	{
 		"inputs": [
 			{ "internalType": "address", "name": "to", "type": "address" },
-			{ "internalType": "uint256", "name": "quantity", "type": "uint256" },
-			{ "internalType": "bytes", "name": "_data", "type": "bytes" },
-			{ "internalType": "bool", "name": "safe", "type": "bool" }
-		],
-		"name": "_mint",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{ "internalType": "address", "name": "to", "type": "address" },
-			{ "internalType": "uint256", "name": "quantity", "type": "uint256" }
-		],
-		"name": "_safeMint",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{ "internalType": "address", "name": "to", "type": "address" },
 			{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }
 		],
 		"name": "approve",
@@ -205,6 +198,20 @@
 		"name": "balanceOf",
 		"outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "flipPauseMinting",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "flipPreSaleMinting",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -235,6 +242,13 @@
 	},
 	{
 		"inputs": [],
+		"name": "isPreSalePaused",
+		"outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "maxsupply",
 		"outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
 		"stateMutability": "view",
@@ -258,6 +272,13 @@
 	},
 	{
 		"inputs": [],
+		"name": "notRevealedUri",
+		"outputs": [{ "internalType": "string", "name": "", "type": "string" }],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "owner",
 		"outputs": [{ "internalType": "address", "name": "", "type": "address" }],
 		"stateMutability": "view",
@@ -269,6 +290,13 @@
 		],
 		"name": "ownerOf",
 		"outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "presaleprice",
+		"outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
 		"stateMutability": "view",
 		"type": "function"
 	},
@@ -295,8 +323,15 @@
 	},
 	{
 		"inputs": [],
-		"name": "rootHash",
-		"outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+		"name": "reveal",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "revealed",
+		"outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
 		"stateMutability": "view",
 		"type": "function"
 	},
@@ -338,6 +373,33 @@
 			{ "internalType": "string", "name": "_newBaseURI", "type": "string" }
 		],
 		"name": "setBaseURI",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{ "internalType": "string", "name": "_notRevealedURI", "type": "string" }
+		],
+		"name": "setNotRevealedURI",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{ "internalType": "uint256", "name": "_newCost", "type": "uint256" }
+		],
+		"name": "setPreSalePrice",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{ "internalType": "uint256", "name": "_newCost", "type": "uint256" }
+		],
+		"name": "setPrice",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -436,24 +498,10 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "bytes32[]",
-				"name": "_merkleProof",
-				"type": "bytes32[]"
-			},
-			{ "internalType": "uint256", "name": "chosenAmount", "type": "uint256" }
-		],
-		"name": "whiteListMint",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"name": "withdraw",
 		"outputs": [],
-		"stateMutability": "payable",
+		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]

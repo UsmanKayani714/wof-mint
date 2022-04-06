@@ -36,6 +36,9 @@
 		rgba(21, 213, 22, 1) 100%
 	); */
 }
+.nounderline{
+	text-decoration: none;
+}
 
 @media (max-width: 768px) {
 	.img-fix {
