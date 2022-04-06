@@ -21,6 +21,7 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 	// const [tokenId, setTokenId] = useState(null);
 	const [supply, setTokenSupply] = useState(null);
 	const [price, setPrice] = useState();
+	const [preprice, setPrePrice] = useState();
 	const [priceInEth, setPriceInEth] = useState(0.08);
 	const [quantity, setQuantity] = useState(1);
 	const [minted, setMinted] = useState(false);
@@ -40,10 +41,11 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 			const ct = new web3.eth.Contract(abi, contractaddress);
 			setContract(ct);
 			console.log("ct", ct);
-			// let price = await ct.methods.price().call();
-			let price = await ct.methods.presaleprice().call();
+			let price = await ct.methods.price().call();
+			let presaleprice = await ct.methods.presaleprice().call();
 			setContract(ct);
 			setPrice(price);
+			setPrePrice(presaleprice);
 			setPriceInEth(web3.utils.fromWei(price, "ether"));
 			const totalSupply = await ct.methods.totalSupply().call();
 			setTokenSupply(totalSupply);
@@ -55,22 +57,22 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 			);
 		}
 	}
-	// async function mint() {
-	// 	// alert("normal");
-	// 	const web3 = window.web3;
-	// 	const _value = price * quantity;
-	// 	const address = await web3.eth.getAccounts();
-
-	// 	await contract.methods
-	// 		.Mint(quantity)
-	// 		.send({ from: address.toString(), value: _value });
-	// 	setMinted(true);
-	// 	const totalSupply = await contract.methods.totalSupply().call();
-	// 	setTokenSupply(totalSupply);
-	// }
-	async function whitelistMint() {
+	async function mint() {
+		// alert("normal");
 		const web3 = window.web3;
 		const _value = price * quantity;
+		const address = await web3.eth.getAccounts();
+
+		await contract.methods
+			.Mint(quantity)
+			.send({ from: address.toString(), value: _value });
+		setMinted(true);
+		const totalSupply = await contract.methods.totalSupply().call();
+		setTokenSupply(totalSupply);
+	}
+	async function whitelistMint() {
+		const web3 = window.web3;
+		const _value = preprice * quantity;
 		const address = await web3.eth.getAccounts();
 		const senderAddress = address[0];
 		const sentAddress = keccak256(senderAddress);
@@ -164,6 +166,7 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 							className="px-5 text-center btn-visit rounded-pill"
 							onClick={async () => {
 								whitelistMint();
+								// mint();
 							}}
 						>
 							Mint Now
@@ -173,7 +176,6 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 							className="px-5 text-center btn-visit rounded-pill"
 							onClick={async () => {
 								connectWallet();
-								// presaleMint();
 							}}
 						>
 							Connect wallet

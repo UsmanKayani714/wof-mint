@@ -27,11 +27,11 @@
 	display: block;
 }
 
-/* .btn-visit:hover {
+.btn-visit:hover {
 	background: #393939;
 	color: #fff;
-	no hover
-} */
+	
+}
 
 .nounderline{
 	text-decoration: none;
