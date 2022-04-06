@@ -22,7 +22,7 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 	const [price, setPrice] = useState();
 	const [priceInEth, setPriceInEth] = useState(0.08);
 	const [quantity, setQuantity] = useState(1);
-	const [minted, setMinted] = useState(false);
+	const [minted, setMinted] = useState(true);
 	// console.log("C", connecctstatus);
 
 	useEffect(() => {
@@ -68,7 +68,7 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 		const merkleProof = merkleTree.getHexProof(sentAddress);
 		console.log(rootHash, merkleProof);
 
-		// WHITELIST KA METHOD LGANA IDHR
+		// WHITELIST KA METHOD LG GYA
 
 		await contract.methods
 			.PreMint(merkleProof, quantity)
