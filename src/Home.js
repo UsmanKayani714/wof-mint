@@ -16,13 +16,14 @@ const keccak256 = require("keccak256");
 
 const Home = ({ connecctstatus, setConnectedstatus }) => {
 	const [connectedAccount, setConnectedAccount] = useState("Connect Wallet");
+	const [connected, setConnected] = useState(false);
 	const [contract, setContract] = useState(null);
 	// const [tokenId, setTokenId] = useState(null);
 	const [supply, setTokenSupply] = useState(null);
 	const [price, setPrice] = useState();
 	const [priceInEth, setPriceInEth] = useState(0.08);
 	const [quantity, setQuantity] = useState(1);
-	const [minted, setMinted] = useState(true);
+	const [minted, setMinted] = useState(false);
 	// console.log("C", connecctstatus);
 
 	useEffect(() => {
@@ -96,6 +97,7 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 					);
 			}
 			setConnectedAccount(splitedMetaMaskAddress);
+			setConnected(true);
 		} else if (window.web3) {
 			window.web3 = new Web3(window.web3.currentProvider);
 		} else {
@@ -144,7 +146,27 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 						</div>
 					</div>
 					<br />
-					<a
+					{connected ? (
+						<a
+							className="px-5 text-center btn-visit rounded-pill"
+							onClick={async () => {
+								whitelistMint();
+							}}
+						>
+							Mint Now
+						</a>
+					) : (
+						<a
+							className="px-5 text-center btn-visit rounded-pill"
+							onClick={async () => {
+								connectWallet();
+								// presaleMint();
+							}}
+						>
+							Connect wallet
+						</a>
+					)}
+					{/* <a
 						className="px-5 text-center btn-visit rounded-pill"
 						onClick={async () => {
 							await connectWallet();
@@ -152,7 +174,7 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 						}}
 					>
 						Mint Now
-					</a>
+					</a> */}
 					<p className="fw-bold fs-3">{supply} / 5500</p>
 					{minted ? (
 						<>
