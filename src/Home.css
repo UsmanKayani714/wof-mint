@@ -6,11 +6,12 @@
 }
 
 .btn-visit {
-	background: linear-gradient(
+	/* background: linear-gradient(
 		180deg,
 		rgba(186, 251, 7, 1) 0%,
 		rgba(21, 213, 22, 1) 100%
-	);
+	); */
+	background-color: #142947;
 }
 .btn-visit {
 	margin: 10px;
@@ -19,8 +20,8 @@
 	text-transform: uppercase;
 	transition: 0.5s;
 	background-size: 200% auto;
-	color: #000;
-	box-shadow: 0 0 10px #000;
+	/* color: #000; */
+	/* box-shadow: 0 0 10px #000; */
 	border-radius: 30px;
 	cursor: pointer;
 	text-decoration: none;
@@ -30,17 +31,8 @@
 .btn-visit:hover {
 	background: #393939;
 	color: #fff;
-	
 }
 
-.nounderline{
+.nounderline {
 	text-decoration: none;
-}
-
-@media (max-width: 768px) {
-	.img-fix {
-		width: 100%;
-		height: auto;
-	}
-	
 }

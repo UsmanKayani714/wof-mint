@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import Web3 from "web3";
 import logo from "./assets/logo.png";
 import { useState, useEffect } from "react";
@@ -10,7 +11,6 @@ function Hero({ setconnecctstatus, connecctstatus }) {
 			connectWallet();
 		}
 	});
-
 	async function connectWallet() {
 		if (window.ethereum) {
 			window.web3 = new Web3(window.ethereum);

@@ -1,18 +1,16 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React from "react";
 import "./Home.css";
 import Web3 from "web3";
+import dreamabi from "./Dreamabi.json";
 import abi from "./abi.json";
 import { useEffect, useState } from "react";
 import opensea from "./assets/opensea.svg";
 import caps from "./assets/captains.png";
 
-import whiteListAddresses from "./whitelist";
-
 require("dotenv").config();
 const { REACT_APP_CONTRACT_ADDRESS } = process.env;
-
-const { MerkleTree } = require("merkletreejs");
-const keccak256 = require("keccak256");
 
 const Home = ({ connecctstatus, setConnectedstatus }) => {
 	const [connectedAccount, setConnectedAccount] = useState("Connect Wallet");
@@ -25,6 +23,7 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 	const [priceInEth, setPriceInEth] = useState(0.08);
 	const [quantity, setQuantity] = useState(1);
 	const [minted, setMinted] = useState(false);
+	const [isHolder, setHolder] = useState(false);
 	// console.log("C", connecctstatus);
 
 	useEffect(() => {
@@ -38,11 +37,11 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 			const web3 = window.web3;
 			// creating contract instance
 			const contractaddress = REACT_APP_CONTRACT_ADDRESS;
-			const ct = new web3.eth.Contract(abi, contractaddress);
+			const ct = new web3.eth.Contract(dreamabi, contractaddress);
 			setContract(ct);
 			console.log("ct", ct);
 			let price = await ct.methods.price().call();
-			let presaleprice = await ct.methods.presaleprice().call();
+			let presaleprice = await ct.methods.Holderprice().call();
 			setContract(ct);
 			setPrice(price);
 			setPrePrice(presaleprice);
@@ -57,8 +56,21 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 			);
 		}
 	}
+	async function Getdata() {
+		window.web3 = new Web3(window.ethereum);
+		const web3 = window.web3;
+		const wofaddress = "0x2e154a38157E9c58fD73378d17528d719bdA23D1";
+		const ct = new web3.eth.Contract(abi, wofaddress);
+		const metaMaskAccount = await web3.eth.getAccounts();
+		const balance = await ct.methods.balanceOf(metaMaskAccount[0]).call();
+		console.log(balance, "balance");
+		if (balance > 0) {
+			setHolder(true);
+		}
+	}
 	async function mint() {
 		// alert("normal");
+		console.log(isHolder, "holder status");
 		const web3 = window.web3;
 		const _value = price * quantity;
 		const address = await web3.eth.getAccounts();
@@ -70,24 +82,16 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 		const totalSupply = await contract.methods.totalSupply().call();
 		setTokenSupply(totalSupply);
 	}
-	async function whitelistMint() {
+	async function HolderMint() {
+		console.log(isHolder, "holder status");
 		const web3 = window.web3;
 		const _value = preprice * quantity;
 		const address = await web3.eth.getAccounts();
-		const senderAddress = address[0];
-		const sentAddress = keccak256(senderAddress);
-		const leafNodes = whiteListAddresses.map((addr) => keccak256(addr));
-		const merkleTree = new MerkleTree(leafNodes, keccak256, {
-			sortPairs: true,
-		});
-		const rootHash = merkleTree.getHexRoot();
-		const merkleProof = merkleTree.getHexProof(sentAddress);
-		console.log(rootHash, merkleProof);
 
 		// WHITELIST KA METHOD LG GYA
 
 		await contract.methods
-			.PreMint(merkleProof, quantity)
+			.HolderMint(quantity)
 			.send({ from: address.toString(), value: _value });
 		setMinted(true);
 		const totalSupply = await contract.methods.totalSupply().call();
@@ -113,6 +117,7 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 			}
 			setConnectedAccount(splitedMetaMaskAddress);
 			setConnected(true);
+			Getdata();
 		} else if (window.web3) {
 			window.web3 = new Web3(window.web3.currentProvider);
 		} else {
@@ -125,7 +130,7 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 		<>
 			<div className="container">
 				<h1 className="text-center">
-					<img src={caps} alt="caps" height="600px" className="img-fix" />
+					<img src={caps} alt="caps" className="img-fluid" />
 				</h1>
 			</div>
 			<div className="container text-center d-flex justify-content-center py-5">
@@ -144,14 +149,14 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 								-
 							</button>
 
-							<button type="button" className="btn text-white">
+							<button type="button" className="btn text-black">
 								{quantity}
 							</button>
 							<button
 								type="button"
 								className="btn bg-white text-black"
 								onClick={() => {
-									if (quantity < 5) {
+									if (quantity < 50) {
 										setQuantity(quantity + 1);
 									}
 								}}
@@ -162,15 +167,27 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 					</div>
 					<br />
 					{connected ? (
-						<a
-							className="px-5 text-center btn-visit rounded-pill"
-							onClick={async () => {
-								whitelistMint();
-								// mint();
-							}}
-						>
-							Mint Now
-						</a>
+						isHolder ? (
+							<>
+								<a
+									className="px-5 text-center btn-visit rounded-pill"
+									onClick={async () => {
+										HolderMint();
+									}}
+								>
+									Holder Mint
+								</a>
+							</>
+						) : (
+							<a
+								className="px-5 text-center btn-visit rounded-pill"
+								onClick={async () => {
+									mint();
+								}}
+							>
+								Mint Now
+							</a>
+						)
 					) : (
 						<a
 							className="px-5 text-center btn-visit rounded-pill"
@@ -181,16 +198,16 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 							Connect wallet
 						</a>
 					)}
-					<p className="fw-bold fs-3">{supply} / 5500</p>
+					{/* <p className="fw-bold fs-3">{supply} / 5500</p> */}
 					{minted ? (
 						<>
-							<p className="fs-3">
+							<p className="fs-3 text-black">
 								Congrats! Token Minted. Please Check your Wallet
 							</p>
 							<br />
 							<a
-								href="https://opensea.io/collection/wofcapts"
-								className="fs-3 fw-bold text-white nounderline"
+								href="https://opensea.io/collection/wof-dream-team"
+								className="fs-3 fw-bold nounderline text-black"
 							>
 								View On &nbsp;
 								<img src={opensea} alt="" height="40px" />
@@ -199,8 +216,8 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 					) : null}
 				</div>
 			</div>
-			<div className="container text-center">
-				<h1 className="display-3">Mint Your WORLD OF FOOTBALL NFT</h1>
+			<div className="container text-center text-black">
+				<h1 className="display-3">Mint Your WOF Dream Team NFT</h1>
 			</div>
 		</>
 	);
