@@ -6,6 +6,11 @@
 				"internalType": "address",
 				"name": "contractaddress",
 				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "goldcapsContractAddress",
+				"type": "address"
 			}
 		],
 		"stateMutability": "nonpayable",
@@ -132,6 +137,15 @@
 		"type": "event"
 	},
 	{
+		"inputs": [],
+		"name": "GOLDCAPSDeployed",
+		"outputs": [
+			{ "internalType": "contract IERC721", "name": "", "type": "address" }
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{ "internalType": "uint256", "name": "chosenAmount", "type": "uint256" }
 		],
@@ -152,15 +166,6 @@
 			{ "internalType": "uint256", "name": "chosenAmount", "type": "uint256" }
 		],
 		"name": "Mint",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{ "internalType": "uint256", "name": "chosenAmount", "type": "uint256" }
-		],
-		"name": "MintPublic",
 		"outputs": [],
 		"stateMutability": "payable",
 		"type": "function"
@@ -366,6 +371,19 @@
 			{ "internalType": "string", "name": "_newBaseURI", "type": "string" }
 		],
 		"name": "setBaseURI",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "contractaddress",
+				"type": "address"
+			}
+		],
+		"name": "setGoldenCapsAddress",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"

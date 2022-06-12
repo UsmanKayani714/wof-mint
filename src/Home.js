@@ -59,7 +59,7 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 	async function Getdata() {
 		window.web3 = new Web3(window.ethereum);
 		const web3 = window.web3;
-		const wofaddress = "0x2e154a38157E9c58fD73378d17528d719bdA23D1";
+		const wofaddress = "0xa98264c5e38636a83ed047942105bc03afbd6b97";
 		const ct = new web3.eth.Contract(abi, wofaddress);
 		const metaMaskAccount = await web3.eth.getAccounts();
 		const balance = await ct.methods.balanceOf(metaMaskAccount[0]).call();

@@ -59,7 +59,15 @@ function Hero({ setconnecctstatus, connecctstatus }) {
 						<span className="navbar-toggler-icon"></span>
 					</button>
 					<div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-						<div className="navbar-nav ms-auto">
+						<div className="navbar-nav ms-auto align-items-center">
+							<a
+								className="nav-link px-5 text-center text-black"
+								href="https://worldoffootball.io"
+								tabIndex="-1"
+								aria-disabled="true"
+							>
+								Back to Home
+							</a>
 							<a
 								className="nav-link px-5 btn-visit text-center"
 								href="#"
