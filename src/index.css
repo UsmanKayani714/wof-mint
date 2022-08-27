@@ -1,3 +1,11 @@
+@font-face {
+	font-family: Space Grotesk;
+	src: url(./assets/SpaceGrotesk.woff2);
+}
+@font-face {
+	font-family: Russo_One;
+	src: url(./assets/Russo_One.ttf);
+}
 body {
 	/* background: rgb(186, 251, 7); */
 	/* background: linear-gradient(
@@ -5,25 +13,21 @@ body {
 		rgba(186, 251, 7, 1) 0%,
 		rgba(21, 213, 22, 1) 100%
 	); */
-	background-color: #01ffff;
+	/* background-color: #01ffff; */
+	background-color: #f2f2f2;
 	background-repeat: no-repeat;
 	background-size: cover;
-	color: #fff;
+	color: #000;
+	font-family: Space Grotesk;
 }
 p {
-	font-family: "Roboto", sans-serif;
+	font-family: Space Grotesk;
 	font-weight: 200;
 }
 h1 {
-	font-family: "Rajdhani", sans-serif;
+	font-family: Russo_One;
 }
 ::selection {
 	color: #fff;
 	background: #c59d5f;
-}
-
-.footer-icon {
-	color: #fff;
-	cursor: pointer;
-	margin-right: 20px;
 }

@@ -41,7 +41,13 @@ function Hero({ setconnecctstatus, connecctstatus }) {
 
 	return (
 		<>
-			<nav className="navbar navbar-expand-lg navbar-light">
+			<div className="headline py-3">
+				<div className="container text-center">
+					<strong>MINTING NOW:</strong> 1 "CAMISOLA" NFT = 1 IRL Forjães JERSEY
+					+ SHIPPING + VOTING RIGHTS ON WEEKLY MVP
+				</div>
+			</div>
+			{/* <nav className="navbar navbar-expand-lg navbar-light">
 				<div className="container">
 					<a className="navbar-brand" href="#">
 						<img src={logo} alt="" height="120px" />
@@ -80,7 +86,7 @@ function Hero({ setconnecctstatus, connecctstatus }) {
 						</div>
 					</div>
 				</div>
-			</nav>
+			</nav> */}
 		</>
 	);
 }

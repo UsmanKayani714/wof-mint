@@ -4,3 +4,11 @@
 .nav-link {
 	color: #000 !important;
 } */
+
+.headline {
+	background-color: #fff200;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25px;
+	color: #ff3a2d;
+}

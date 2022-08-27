@@ -7,7 +7,7 @@ import dreamabi from "./Dreamabi.json";
 import abi from "./abi.json";
 import { useEffect, useState } from "react";
 import opensea from "./assets/opensea.svg";
-import caps from "./assets/captains.png";
+import caps from "./assets/Camisolas.gif";
 
 require("dotenv").config();
 const { REACT_APP_CONTRACT_ADDRESS } = process.env;
@@ -128,96 +128,179 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 	}
 	return (
 		<>
-			<div className="container">
-				<h1 className="text-center">
-					<img src={caps} alt="caps" className="img-fluid" />
-				</h1>
-			</div>
-			<div className="container text-center d-flex justify-content-center py-5">
-				<div className="text-center text-white">
-					<div className="btngroup">
-						<div className="" role="group" aria-label="First group">
-							<button
-								type="button"
-								className="btn bg-white text-black"
-								onClick={() => {
-									if (quantity > 1) {
-										setQuantity(quantity - 1);
-									}
-								}}
-							>
-								-
-							</button>
+			<div className="container pt-5 my-5">
+				<div className="row">
+					<div className="col-md-6">
+						<img src={caps} className="img-fluid" alt="" />
+					</div>
+					<div className="col-md-6 pt-5">
+						<h1 className="display-5">
+							"A CAMISOLA", World of Football's 4th Collection
+						</h1>
+						<br />
+						<div>
+							<h5>
+								<strong>One (1) CAMISOLA NFT</strong> gets you the following
+								utilities:
+							</h5>
+							<br />
+							<div>
+								<li>
+									<svg
+										width="24px"
+										height="24px"
+										viewBox="0 0 24 24"
+										className="mb-1"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path d="M16.813 4.419A.997.997 0 0 0 16 4H3a1 1 0 0 0-.813 1.581L6.771 12l-4.585 6.419A1 1 0 0 0 3 20h13a.997.997 0 0 0 .813-.419l5-7a.997.997 0 0 0 0-1.162l-5-7z" />
+									</svg>{" "}
+									One (1) IRL authentic Forjães SC Jersey
+								</li>
+								<li>
+									<svg
+										width="24px"
+										height="24px"
+										viewBox="0 0 24 24"
+										className="mb-1"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path d="M16.813 4.419A.997.997 0 0 0 16 4H3a1 1 0 0 0-.813 1.581L6.771 12l-4.585 6.419A1 1 0 0 0 3 20h13a.997.997 0 0 0 .813-.419l5-7a.997.997 0 0 0 0-1.162l-5-7z" />
+									</svg>{" "}
+									+ Free shipping
+								</li>
+								<li>
+									<svg
+										width="24px"
+										height="24px"
+										viewBox="0 0 24 24"
+										className="mb-1"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path d="M16.813 4.419A.997.997 0 0 0 16 4H3a1 1 0 0 0-.813 1.581L6.771 12l-4.585 6.419A1 1 0 0 0 3 20h13a.997.997 0 0 0 .813-.419l5-7a.997.997 0 0 0 0-1.162l-5-7z" />
+									</svg>{" "}
+									on your jersey ONe (1) "I RUN A PRO FOOTBALL CLUB" sticker
+								</li>
+								<li>
+									<svg
+										width="24px"
+										height="24px"
+										viewBox="0 0 24 24"
+										className="mb-1"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path d="M16.813 4.419A.997.997 0 0 0 16 4H3a1 1 0 0 0-.813 1.581L6.771 12l-4.585 6.419A1 1 0 0 0 3 20h13a.997.997 0 0 0 .813-.419l5-7a.997.997 0 0 0 0-1.162l-5-7z" />
+									</svg>{" "}
+									Voting rights to select every weeks' MVP
+								</li>
+								<div>
+									<svg
+										width="24px"
+										height="24px"
+										viewBox="0 0 24 24"
+										className="mb-1"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path d="M16.813 4.419A.997.997 0 0 0 16 4H3a1 1 0 0 0-.813 1.581L6.771 12l-4.585 6.419A1 1 0 0 0 3 20h13a.997.997 0 0 0 .813-.419l5-7a.997.997 0 0 0 0-1.162l-5-7z" />
+									</svg>{" "}
+									20% discount code to use on our forjaessc.com/shop
+								</div>
+							</div>
+						</div>
+						<div className="container text-center d-flex justify-content-center py-5">
+							<div className="text-center text-white">
+								<div className="btngroup">
+									<div className="" role="group" aria-label="First group">
+										<button
+											type="button"
+											className="btn bg-dark text-white"
+											onClick={() => {
+												if (quantity > 1) {
+													setQuantity(quantity - 1);
+												}
+											}}
+										>
+											-
+										</button>
 
-							<button type="button" className="btn text-black">
-								{quantity}
-							</button>
-							<button
-								type="button"
-								className="btn bg-white text-black"
-								onClick={() => {
-									if (quantity < 50) {
-										setQuantity(quantity + 1);
-									}
-								}}
-							>
-								+
-							</button>
+										<button type="button" className="btn text-black">
+											{quantity}
+										</button>
+										<button
+											type="button"
+											className="btn bg-dark text-white"
+											onClick={() => {
+												if (quantity < 50) {
+													setQuantity(quantity + 1);
+												}
+											}}
+										>
+											+
+										</button>
+									</div>
+								</div>
+								<br />
+								{connected ? (
+									isHolder ? (
+										<>
+											<a
+												className="px-5 text-center btn-visit rounded-pill"
+												onClick={async () => {
+													HolderMint();
+												}}
+											>
+												Holder Mint
+											</a>
+										</>
+									) : (
+										<a
+											className="px-5 text-center btn-visit rounded-pill"
+											onClick={async () => {
+												mint();
+											}}
+										>
+											Mint Now
+										</a>
+									)
+								) : (
+									<a
+										className="px-5 text-center btn-visit rounded-pill"
+										onClick={async () => {
+											connectWallet();
+										}}
+									>
+										CONNECT YOUR WALLET AND MINT
+									</a>
+								)}
+								{/* <p className="fw-bold fs-3">{supply} / 5500</p> */}
+								{minted ? (
+									<>
+										<p className="fs-3 text-black">
+											Congrats! Token Minted. Please Check your Wallet
+										</p>
+										<br />
+										<a
+											href="https://opensea.io/collection/wof-dream-team"
+											className="fs-3 fw-bold nounderline text-black"
+										>
+											View On &nbsp;
+											<img src={opensea} alt="" height="40px" />
+										</a>
+									</>
+								) : null}
+							</div>
 						</div>
 					</div>
-					<br />
-					{connected ? (
-						isHolder ? (
-							<>
-								<a
-									className="px-5 text-center btn-visit rounded-pill"
-									onClick={async () => {
-										HolderMint();
-									}}
-								>
-									Holder Mint
-								</a>
-							</>
-						) : (
-							<a
-								className="px-5 text-center btn-visit rounded-pill"
-								onClick={async () => {
-									mint();
-								}}
-							>
-								Mint Now
-							</a>
-						)
-					) : (
-						<a
-							className="px-5 text-center btn-visit rounded-pill"
-							onClick={async () => {
-								connectWallet();
-							}}
-						>
-							Connect wallet
-						</a>
-					)}
-					{/* <p className="fw-bold fs-3">{supply} / 5500</p> */}
-					{minted ? (
-						<>
-							<p className="fs-3 text-black">
-								Congrats! Token Minted. Please Check your Wallet
-							</p>
-							<br />
-							<a
-								href="https://opensea.io/collection/wof-dream-team"
-								className="fs-3 fw-bold nounderline text-black"
-							>
-								View On &nbsp;
-								<img src={opensea} alt="" height="40px" />
-							</a>
-						</>
-					) : null}
 				</div>
 			</div>
-			<div className="container text-center text-black">
-				<h1 className="display-3">Mint Your WOF Dream Team NFT</h1>
+			<div className="container text-center text-footer">
+				<div>
+					Camisola collection designed by Italian designer Pascal Hugo. All
+					pieces designed in 4K resolution.
+					<br />
+					<br />
+					*Minting only while supplies last
+				</div>
 			</div>
 		</>
 	);

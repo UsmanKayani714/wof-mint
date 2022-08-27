@@ -2,24 +2,20 @@
 	padding: 10px 25px;
 	color: #fff !important;
 	font-weight: 700;
-	transition: all 0.25s ease-in-out;
+	transition: all 0.1s ease;
 }
 
 .btn-visit {
-	/* background: linear-gradient(
-		180deg,
-		rgba(186, 251, 7, 1) 0%,
-		rgba(21, 213, 22, 1) 100%
-	); */
-	background-color: #142947;
+	background-color: #007aff;
 }
 .btn-visit {
 	margin: 10px;
-	padding: 15px 45px;
+	font-family: "Roboto", sans-serif;
 	text-align: center;
 	text-transform: uppercase;
 	transition: 0.5s;
 	background-size: 200% auto;
+	font-weight: 500;
 	color: #000;
 	/* box-shadow: 0 0 10px #000; */
 	border-radius: 30px;
@@ -29,10 +25,18 @@
 }
 
 .btn-visit:hover {
-	background: #393939;
-	color: #fff;
+	background: #fff200;
+	color: #000 !important;
 }
 
-.nounderline {
-	text-decoration: none;
+h1 {
+	color: #007aff;
+	line-height: 45px;
+}
+
+.text-footer {
+	color: #161616;
+}
+li {
+	list-style: none;
 }
