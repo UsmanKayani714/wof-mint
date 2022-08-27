@@ -3,8 +3,9 @@
 import React from "react";
 import "./Home.css";
 import Web3 from "web3";
-import dreamabi from "./Dreamabi.json";
-import abi from "./abi.json";
+import dreamabi from "./ABI/Dreamabi.json";
+import goldabi from "./ABI/Dreamabi.json";
+import abi from "./ABI/abi.json";
 import { useEffect, useState } from "react";
 import opensea from "./assets/opensea.svg";
 import caps from "./assets/Camisolas.gif";
@@ -37,11 +38,13 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 			const web3 = window.web3;
 			// creating contract instance
 			const contractaddress = REACT_APP_CONTRACT_ADDRESS;
-			const ct = new web3.eth.Contract(dreamabi, contractaddress);
+			const ct = new web3.eth.Contract(abi, contractaddress);
 			setContract(ct);
 			console.log("ct", ct);
-			let price = await ct.methods.price().call();
-			let presaleprice = await ct.methods.Holderprice().call();
+			let price = await ct.methods.publicPrice().call();
+			let presaleprice = await ct.methods.privatePrice().call();
+			console.log("public price", price);
+			console.log("pre price", presaleprice);
 			setContract(ct);
 			setPrice(price);
 			setPrePrice(presaleprice);
@@ -59,12 +62,18 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 	async function Getdata() {
 		window.web3 = new Web3(window.ethereum);
 		const web3 = window.web3;
-		const wofaddress = "0xa98264c5e38636a83ed047942105bc03afbd6b97";
-		const ct = new web3.eth.Contract(abi, wofaddress);
+		const captAddress = "0x84DCA568F7bE1740038b3c20320d5fa3Ec440ED1";
+		const wofaddress = "0x2e154a38157E9c58fD73378d17528d719bdA23D1";
+		const goldCt = new web3.eth.Contract(goldabi, captAddress);
+		const wofCt = new web3.eth.Contract(dreamabi, wofaddress);
 		const metaMaskAccount = await web3.eth.getAccounts();
-		const balance = await ct.methods.balanceOf(metaMaskAccount[0]).call();
-		console.log(balance, "balance");
-		if (balance > 0) {
+		const balanceCaps = await goldCt.methods
+			.balanceOf(metaMaskAccount[0])
+			.call();
+		const balanceWof = await wofCt.methods.balanceOf(metaMaskAccount[0]).call();
+		console.log(balanceCaps, "balance caps");
+		console.log(balanceWof, "balance dreamteam");
+		if (balanceCaps > 0 || balanceWof > 0) {
 			setHolder(true);
 		}
 	}
@@ -76,7 +85,7 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 		const address = await web3.eth.getAccounts();
 
 		await contract.methods
-			.Mint(quantity)
+			.PublicMint(quantity)
 			.send({ from: address.toString(), value: _value });
 		setMinted(true);
 		const totalSupply = await contract.methods.totalSupply().call();
@@ -91,7 +100,7 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 		// WHITELIST KA METHOD LG GYA
 
 		await contract.methods
-			.HolderMint(quantity)
+			.PrivateMint(quantity)
 			.send({ from: address.toString(), value: _value });
 		setMinted(true);
 		const totalSupply = await contract.methods.totalSupply().call();
@@ -275,13 +284,13 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 								{/* <p className="fw-bold fs-3">{supply} / 5500</p> */}
 								{minted ? (
 									<>
-										<p className="fs-3 text-black">
+										<p className="fs-4 text-black">
 											Congrats! Token Minted. Please Check your Wallet
 										</p>
 										<br />
 										<a
 											href="https://opensea.io/collection/wof-dream-team"
-											className="fs-3 fw-bold nounderline text-black"
+											className="fs-4 fw-bold nounderline text-black"
 										>
 											View On &nbsp;
 											<img src={opensea} alt="" height="40px" />

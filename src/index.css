@@ -27,6 +27,10 @@ p {
 h1 {
 	font-family: Russo_One;
 }
+.nounderline {
+	margin-top: 2px;
+	text-decoration: none;
+}
 ::selection {
 	color: #fff;
 	background: #c59d5f;
