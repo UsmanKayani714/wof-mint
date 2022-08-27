@@ -3,8 +3,9 @@
 import React from "react";
 import "./Home.css";
 import Web3 from "web3";
-import dreamabi from "./ABI/Dreamabi.json";
-import goldabi from "./ABI/Dreamabi.json";
+import GoldAbi from "./ABI/Goldabi.json";
+import WofAbi from "./ABI/Wofabi.json";
+import DreamAbi from "./ABI/Dreamabi.json";
 import abi from "./ABI/abi.json";
 import { useEffect, useState } from "react";
 import opensea from "./assets/opensea.svg";
@@ -62,18 +63,24 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 	async function Getdata() {
 		window.web3 = new Web3(window.ethereum);
 		const web3 = window.web3;
-		const captAddress = "0x84DCA568F7bE1740038b3c20320d5fa3Ec440ED1";
-		const wofaddress = "0x2e154a38157E9c58fD73378d17528d719bdA23D1";
-		const goldCt = new web3.eth.Contract(goldabi, captAddress);
-		const wofCt = new web3.eth.Contract(dreamabi, wofaddress);
+		const GoldAddress = "0x84DCA568F7bE1740038b3c20320d5fa3Ec440ED1";
+		const WofAddress = "0x2e154a38157E9c58fD73378d17528d719bdA23D1";
+		const DreamAddress = "0xDDe41eF522d1992970e84A5dd619aD3b95A2a273";
+		const GoldCt = new web3.eth.Contract(GoldAbi, GoldAddress);
+		const WofCt = new web3.eth.Contract(WofAbi, WofAddress);
+		const DreamCT = new web3.eth.Contract(DreamAbi, DreamAddress);
 		const metaMaskAccount = await web3.eth.getAccounts();
-		const balanceCaps = await goldCt.methods
+		const balanceCaps = await GoldCt.methods
 			.balanceOf(metaMaskAccount[0])
 			.call();
-		const balanceWof = await wofCt.methods.balanceOf(metaMaskAccount[0]).call();
-		console.log(balanceCaps, "balance caps");
-		console.log(balanceWof, "balance dreamteam");
-		if (balanceCaps > 0 || balanceWof > 0) {
+		const balanceWof = await WofCt.methods.balanceOf(metaMaskAccount[0]).call();
+		const balanceDream = await DreamCT.methods
+			.balanceOf(metaMaskAccount[0])
+			.call();
+		console.log(balanceCaps, "balance GOLD");
+		console.log(balanceWof, "balance WOF");
+		console.log(balanceDream, "balance Dreamteam");
+		if (balanceCaps > 0 || balanceWof > 0 || balanceDream > 0) {
 			setHolder(true);
 		}
 	}
