@@ -63,9 +63,9 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 	async function Getdata() {
 		window.web3 = new Web3(window.ethereum);
 		const web3 = window.web3;
-		const GoldAddress = "0x84DCA568F7bE1740038b3c20320d5fa3Ec440ED1";
-		const WofAddress = "0x2e154a38157E9c58fD73378d17528d719bdA23D1";
-		const DreamAddress = "0xDDe41eF522d1992970e84A5dd619aD3b95A2a273";
+		const GoldAddress = "0x18e8bdf40074442f024c4b659661ce20d8974e61";
+		const WofAddress = "0xa98264c5e38636a83ed047942105bc03afbd6b97";
+		const DreamAddress = "0x0f27bc1842e2e84eac87b0d5565d40b421eb47fa";
 		const GoldCt = new web3.eth.Contract(GoldAbi, GoldAddress);
 		const WofCt = new web3.eth.Contract(WofAbi, WofAddress);
 		const DreamCT = new web3.eth.Contract(DreamAbi, DreamAddress);
