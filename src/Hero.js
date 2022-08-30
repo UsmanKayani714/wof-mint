@@ -42,11 +42,26 @@ function Hero({ setconnecctstatus, connecctstatus }) {
 	return (
 		<>
 			<div className="headline py-3">
-				<div className="container text-center">
-					<strong>MINTING NOW:</strong> 1 "CAMISOLA" NFT = 1 IRL Forjães JERSEY
-					+ SHIPPING + VOTING RIGHTS ON WEEKLY MVP
+				<div className="container">
+					<div className="header">
+						<div className="text-center">
+							<strong>MINTING NOW:</strong> 1 "CAMISOLA" NFT = 1 IRL Forjães
+							JERSEY + SHIPPING + VOTING RIGHTS ON WEEKLY MVP
+						</div>
+						<div className="">
+							<a
+								className="px-5 text-center text-black no-underline"
+								href="https://worldoffootball.io"
+								tabIndex="-1"
+								aria-disabled="true"
+							>
+								Back to Home
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
+
 			{/* <nav className="navbar navbar-expand-lg navbar-light">
 				<div className="container">
 					<a className="navbar-brand" href="#">

@@ -232,8 +232,8 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 										<path d="M16.813 4.419A.997.997 0 0 0 16 4H3a1 1 0 0 0-.813 1.581L6.771 12l-4.585 6.419A1 1 0 0 0 3 20h13a.997.997 0 0 0 .813-.419l5-7a.997.997 0 0 0 0-1.162l-5-7z" />
 									</svg>{" "}
 									One year membership at "Socio International" level, which
-									includes ability to vote during presidential elections and
-									even run as president of Forjães SC (more info here:{" "}
+									includes ability to vote during presidential elections(more
+									info here:{" "}
 									<a href="https://forjaessc.com/memberships/">
 										https://forjaessc.com/memberships/
 									</a>{" "}
@@ -334,6 +334,27 @@ const Home = ({ connecctstatus, setConnectedstatus }) => {
 					<br />
 					<br />
 					*Minting only while supplies last
+				</div>
+			</div>
+			<div className="footer py-3 text-center mt-3">
+				<div>
+					World of Football NFT is powered by{" "}
+					<a
+						rel="noreferrer noopener"
+						href="http://doxxedmedia.com"
+						target="_blank"
+					>
+						DOXXED MEDIA
+					</a>
+					, a blockchain creative media agency - © 2022 DOXXED MEDIA - All
+					rights reserved -{" "}
+					<a
+						href="https://worldoffootball.io/terms-and-conditions/"
+						target="_blank"
+						rel="noreferrer noopener"
+					>
+						Terms &amp; Conditions
+					</a>
 				</div>
 			</div>
 		</>
